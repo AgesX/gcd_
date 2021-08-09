@@ -48,11 +48,6 @@
     */
     
     
-    [self testDemo_X];
-    
-    
-    
-    
     
     //
     
@@ -62,6 +57,23 @@
     
     
     
+    /*
+     
+     // 2
+   // [self testDemo_X];
+    [self cp_testDemo_X];
+    
+    */
+    
+    
+    //
+    
+    
+    
+    //
+    
+    
+    [self jiang_textDemo1];
     //
     
     
@@ -159,7 +171,10 @@
 
 }
 
-- (void)textDemo1{
+
+
+
+- (void)jiang_textDemo1{
     
     dispatch_queue_t queue = dispatch_queue_create("cooci", DISPATCH_QUEUE_CONCURRENT);
     NSLog(@"1");
@@ -173,6 +188,9 @@
     NSLog(@"5");
 
 }
+
+
+
 
 
 
@@ -202,6 +220,38 @@
     
     // 先走下面，不阻塞，不耗时
     
+    
+    NSLog(@"5");
+
+    // 答案： 15243
+}
+
+
+
+
+
+
+
+
+
+
+- (void)cp_testDemo_X{
+    
+    dispatch_queue_t queue = dispatch_queue_create("cooci", DISPATCH_QUEUE_CONCURRENT);
+    NSLog(@"1");
+    // 耗时
+    dispatch_async(queue, ^{
+        
+        // 进入耗时
+        NSLog(@"2");
+        dispatch_async(queue, ^{
+            NSLog(@"3");
+        });
+        NSLog(@"4");
+    });
+    
+    // 先走下面，阻塞了
+    sleep(1);
     
     NSLog(@"5");
 

@@ -17,5 +17,10 @@
 
 - (void)testDemo_X;
 
+- (void)cp_testDemo_X;
+
+
+- (void)jiang_textDemo1;
+
 @end
 
