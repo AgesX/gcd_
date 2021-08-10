@@ -95,7 +95,18 @@ DISPATCH_OPTIONS(dispatch_queue_flags, uint32_t,
 
 #define DQF_FLAGS_MASK        ((dispatch_queue_flags_t)0xffff0000)
 #define DQF_WIDTH_MASK        ((dispatch_queue_flags_t)0x0000ffff)
+
+
+
+
+
+
 #define DQF_WIDTH(n)          ((dispatch_queue_flags_t)(uint16_t)(n))
+// 这里是，一个，挺重要的标记
+
+
+
+
 );
 
 /*

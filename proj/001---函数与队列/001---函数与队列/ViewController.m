@@ -47,7 +47,9 @@
     // queue 对象 alloc init class
     
     
-    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();              //   找到 label,  去看源码
+    
+    
     
     
     // 多个 - 集合
@@ -55,7 +57,12 @@
     dispatch_queue_t globQueue = dispatch_get_global_queue(0, 0);
     
     
-    NSLog(@"%@-%@-%@-%@",serial,conque,mainQueue,globQueue);
+    NSLog(@"%@-%@  /n  \\   /n  -%@-%@",serial,conque,mainQueue,globQueue);
+    
+    
+    
+    
+    
     
     
     //
@@ -128,23 +135,55 @@
     
     
     
+    //
+    
+    
+    //
+    
+    //
+    
+    
+    //
+    
+    
+    
+    /*
+     
+    // 7
     
     [self wbinterDemo_q_wei_bo_two];
     
-    
-    
-    //
-    
+     */
     
     //
     
     
     //
     
+    //
+    
+    
+    //
+    //
+    //
+    
+    
+    //
+    
+    //
+    
+    //
     
     //
     
     
+    //
+    //
+    
+    //
+    
+    
+    //
     
     // dispatch_async
     // block

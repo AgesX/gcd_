@@ -230,6 +230,31 @@ const struct dispatch_tsd_indexes_s dispatch_tsd_indexes = {
 };
 #endif // DISPATCH_USE_DIRECT_TSD
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 6618342 Contact the team that owns the Instrument DTrace probe before
 //         renaming this symbol
 struct dispatch_queue_static_s _dispatch_main_q = {
@@ -239,10 +264,38 @@ struct dispatch_queue_static_s _dispatch_main_q = {
 #endif
 	.dq_state = DISPATCH_QUEUE_STATE_INIT_VALUE(1) |
 			DISPATCH_QUEUE_ROLE_BASE_ANON,
-	.dq_label = "com.apple.main-thread",
+	
+	
+	.dq_label = "com.apple.main-thread",			//  定位到，源代码
+	
+	
 	.dq_atomic_flags = DQF_THREAD_BOUND | DQF_WIDTH(1),
+	
+	//	DQF_WIDTH， 这个数据等于 1
+	
+	
+	
+	
+	
 	.dq_serialnum = 1,
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #if DISPATCH_USE_MGR_THREAD && DISPATCH_USE_PTHREAD_ROOT_QUEUES
 static struct dispatch_pthread_root_queue_context_s
