@@ -363,7 +363,7 @@ static struct dispatch_pthread_root_queue_context_s
 
 
 
-// 系统提供的，默认并发队列
+// 系统提供的默认,    		全局并发队列
 
 
 // 服务质量的区别， dq_serialnum
