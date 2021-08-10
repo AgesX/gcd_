@@ -20,7 +20,10 @@
 - (void)cp_testDemo_X;
 
 
-- (void)jiang_textDemo1;
+- (void)jiang_testDemo1;
+
+
+- (void)jiang_two_testDemo1;
 
 @end
 

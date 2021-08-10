@@ -68,14 +68,17 @@
     
     //
     
+    /*
+    
+    //  3
     
     
+    [self jiang_testDemo1];
     //
+    */
     
     
-    [self jiang_textDemo1];
-    //
-    
+    [self jiang_two_testDemo1];
     
     
     
@@ -174,13 +177,43 @@
 
 
 
-- (void)jiang_textDemo1{
+
+
+
+- (void)jiang_testDemo1{
     
     dispatch_queue_t queue = dispatch_queue_create("cooci", DISPATCH_QUEUE_CONCURRENT);
     NSLog(@"1");
     dispatch_async(queue, ^{
         NSLog(@"2");
         dispatch_sync(queue, ^{
+            NSLog(@"3");
+        });
+        NSLog(@"4");
+    });
+    NSLog(@"5");
+
+}
+
+
+
+
+
+- (void)jiang_two_testDemo1{
+    
+    dispatch_queue_t queue = dispatch_queue_create("cooci", NULL);      //  此时，为并发队列
+    
+    
+    
+    NSLog(@"1");
+    dispatch_async(queue, ^{
+        NSLog(@"2");
+        dispatch_sync(queue, ^{
+            
+            //  Thread 4: EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0)
+            
+            //  死锁，崩溃
+            
             NSLog(@"3");
         });
         NSLog(@"4");
@@ -251,7 +284,7 @@
     });
     
     // 先走下面，阻塞了
-    sleep(1);
+    sleep(1);               //  主线程，        卡顿、延迟，          回不来
     
     NSLog(@"5");
 
