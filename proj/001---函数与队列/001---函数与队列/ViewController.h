@@ -27,5 +27,11 @@
 
 - (void)jiang_three_testDemo1;
 
+
+- (void)wbinterDemo_q_wei_bo;
+
+
+- (void)wbinterDemo_q_wei_bo_two;
+
 @end
 

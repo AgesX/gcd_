@@ -85,8 +85,46 @@
     */
     
     
-    
+    /*
+     
+    // 5
     [self jiang_three_testDemo1];
+    
+     */
+    
+    
+    
+    
+    
+    
+    
+    /*
+     
+    // 6
+    
+    
+    [self wbinterDemo_q_wei_bo];
+     
+      */
+    
+    
+    
+    
+    [self wbinterDemo_q_wei_bo_two];
+    
+    
+    
+    //
+    
+    
+    //
+    
+    
+    //
+    
+    
+    //
+    
     
     
     // dispatch_async
@@ -488,7 +526,7 @@
 
 
 
-- (void)wbinterDemo{//
+- (void)wbinterDemo_q_wei_bo{//
     dispatch_queue_t queue = dispatch_queue_create("com.lg.cooci.cn", DISPATCH_QUEUE_CONCURRENT);
     
     //  并发队列，管子粗
@@ -505,13 +543,20 @@
     });
     
     // 堵塞哪一行
+    
+    
+    
+    // 同步任务，具有阻塞的特性
+    
+    
+    
     dispatch_sync(queue, ^{
         NSLog(@"3");
         
         
         //  同步任务，阻塞下面的 0
         
-        //  他没有阻塞上面的
+        //  他没有阻塞上面的, 也不会阻塞自己
     });
     
     NSLog(@"0");
@@ -550,7 +595,7 @@
     });
     
     
-    
+    // 我的程序: 3120789
     
     
     
@@ -566,8 +611,88 @@
 
 
 
+// 并发，真神奇，意想不到
+- (void)wbinterDemo_q_wei_bo_two{//
+    dispatch_queue_t queue = dispatch_queue_create("com.lg.cooci.cn", DISPATCH_QUEUE_CONCURRENT);
+    
+    //  并发队列，管子粗
+    
+    
+    
+    // 1 2 3
+    //  0 (7 8 9)
+    dispatch_async(queue, ^{ // 耗时
+        NSLog(@"1");
+    });
+    dispatch_async(queue, ^{
+        sleep(1);
+        NSLog(@"2");
+    });
+    
+    // 堵塞哪一行
+    
+    
+    
+    // 同步任务，具有阻塞的特性
+    
+    
+    
+    dispatch_sync(queue, ^{
+        NSLog(@"3");
+        
+        
+        //  同步任务，阻塞下面的 0
+        
+        //  他没有阻塞上面的, 也不会阻塞自己
+    });
+    
+    NSLog(@"0");
+    
+    
+    
+    
+    
+    
+    
+    // 123 , 没有顺序
+    // （ 虽然， 3 是同步 ）
+    
+    
+    
+    
+    // 0
+    
+    
+    
+    
+    // 789， 没有顺序
+    
+    
+    
+    
 
-
+    dispatch_async(queue, ^{
+        NSLog(@"7");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"8");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"9");
+    });
+    
+    
+    // 我的程序: 3120789
+    
+    
+    
+    
+    
+    // A: 1230789
+    // B: 1237890
+    // C: 3120798
+    // D: 2137890
+}
 
 
 
