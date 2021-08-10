@@ -201,13 +201,21 @@
 
 - (void)jiang_two_testDemo1{
     
-    dispatch_queue_t queue = dispatch_queue_create("cooci", NULL);      //  此时，为并发队列
+    dispatch_queue_t queue = dispatch_queue_create("cooci", NULL);
+    //  此时，为串行队列
+    //  NULL,  即 DISPATCH_QUEUE_SERIAL
+    
+    
+    
     
     
     
     NSLog(@"1");
     dispatch_async(queue, ^{
         NSLog(@"2");
+        
+        
+        // 死锁，互相等待
         dispatch_sync(queue, ^{
             
             //  Thread 4: EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0)
@@ -219,8 +227,15 @@
         NSLog(@"4");
     });
     NSLog(@"5");
+    
+    
+    
+    // 152 挂
+    
+    
 
 }
+
 
 
 
