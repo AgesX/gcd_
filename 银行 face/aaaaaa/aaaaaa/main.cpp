@@ -11,6 +11,11 @@
 
 using namespace std;
 
+
+
+// 给一个字符串， 算出两个相同字符，之间的最远距离
+
+
 int maxLengthBetweenEqualCharacters(string s) {
     unordered_map<char, int> container;
     int cnt = (int)s.length();
