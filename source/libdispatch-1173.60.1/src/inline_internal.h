@@ -1942,6 +1942,14 @@ _dispatch_queue_set_bound_thread(dispatch_queue_class_t dqu)
 	});
 }
 
+
+
+
+
+
+
+
+
 DISPATCH_ALWAYS_INLINE
 static inline void
 _dispatch_queue_clear_bound_thread(dispatch_queue_class_t dqu)
@@ -1950,6 +1958,9 @@ _dispatch_queue_clear_bound_thread(dispatch_queue_class_t dqu)
 	os_atomic_and2o(dqu._dq, dq_state,
 			~DISPATCH_QUEUE_DRAIN_OWNER_MASK, relaxed);
 }
+
+
+
 
 DISPATCH_ALWAYS_INLINE
 static inline dispatch_pthread_root_queue_observer_hooks_t

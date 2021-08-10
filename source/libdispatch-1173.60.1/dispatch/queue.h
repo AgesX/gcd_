@@ -618,6 +618,7 @@ struct dispatch_queue_s _dispatch_main_q;
  
  
  
+ (  main 函数之前,  dyld  )
  
  
  
@@ -708,6 +709,13 @@ typedef long dispatch_queue_priority_t;
  */
 API_AVAILABLE(macos(10.6), ios(4.0))
 DISPATCH_EXPORT DISPATCH_CONST DISPATCH_WARN_RESULT DISPATCH_NOTHROW
+
+
+
+
+//   传参，为服务质量
+
+
 dispatch_queue_global_t
 dispatch_get_global_queue(long identifier, unsigned long flags);
 

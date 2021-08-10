@@ -47,6 +47,10 @@
     // queue 对象 alloc init class
     
     
+    
+    
+    
+    //  <OS_dispatch_queue_main: com.apple.main-thread>
     dispatch_queue_t mainQueue = dispatch_get_main_queue();              //   找到 label,  去看源码
     
     
@@ -54,6 +58,9 @@
     
     // 多个 - 集合
     
+    
+    
+    //  <OS_dispatch_queue_global: com.apple.root.default-qos>
     dispatch_queue_t globQueue = dispatch_get_global_queue(0, 0);
     
     

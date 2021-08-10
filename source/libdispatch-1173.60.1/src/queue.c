@@ -7704,7 +7704,24 @@ _dispatch_root_queues_init(void)
 
 
 
+/*
 
+ 
+ 
+主线程队列，在 main 函数之前，创建
+
+
+
+(  main 函数之前,  dyld  )
+ 
+ 
+
+ 
+*/
+
+
+
+//	 主线程队列，要想来的早，		可能考虑下面这个
 
 
 
@@ -7770,12 +7787,44 @@ libdispatch_init(void)
 			_dispatch_deferred_items_cleanup);
 #endif
 
+	
+	
+	
+	
+	
+	
+	
 #if DISPATCH_USE_RESOLVERS // rdar://problem/8541707
+	
+	
+	
+	
+	//		这里，设置
+	
 	_dispatch_main_q.do_targetq = _dispatch_get_default_queue(true);
 #endif
+	
+	
+	
+	
+	
 
 	_dispatch_queue_set_current(&_dispatch_main_q);
+	//  取地址， 设置当前的主队列
+	
+	
+	
 	_dispatch_queue_set_bound_thread(&_dispatch_main_q);
+	// 建立，对线程的绑定
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 #if DISPATCH_USE_PTHREAD_ATFORK
 	(void)dispatch_assume_zero(pthread_atfork(dispatch_atfork_prepare,
