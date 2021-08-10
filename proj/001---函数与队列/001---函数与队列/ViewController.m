@@ -19,20 +19,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 队列总共有几种 3 - 4
-    // libdispatch.dylib - GCD 底层源码
+    
+    
+    // 队列总共有 2 种
+    
+    
+    
+    // GCD 底层源码 ， 存在于    libdispatch.dylib
+    
+    
+    
+    
     // 队列怎么创建 : DISPATCH_QUEUE_SERIAL / DISPATCH_QUEUE_CONCURRENT
+    
+    
     
     // OS_dispatch_queue_serial
     dispatch_queue_t serial = dispatch_queue_create("cooci", DISPATCH_QUEUE_SERIAL);
+    
+    
     // OS_dispatch_queue_concurrent
     // OS_dispatch_queue_concurrent
+    
+    
     dispatch_queue_t conque = dispatch_queue_create("cooci", DISPATCH_QUEUE_CONCURRENT);
     // DISPATCH_QUEUE_SERIAL max && 1
     // queue 对象 alloc init class
+    
+    
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
     
+    
     // 多个 - 集合
+    
     dispatch_queue_t globQueue = dispatch_get_global_queue(0, 0);
     
     
@@ -724,7 +743,7 @@ void testMethod(void){
     /*
     
     dispatch_async(queue, ^{
-          // 异步慢, 20 毫米左右
+          // 异步慢, 20 毫秒左右
      
           // 异步，消耗性能
      
@@ -744,7 +763,7 @@ void testMethod(void){
     
     
     dispatch_sync(queue, ^{
-        // 同步快, 5 毫米左右
+        // 同步快, 5 毫秒左右
         
         
         //testMethod();
