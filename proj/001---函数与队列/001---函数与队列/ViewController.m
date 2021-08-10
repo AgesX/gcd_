@@ -225,6 +225,12 @@
             NSLog(@"3");
         });
         NSLog(@"4");
+        
+        
+        // 死锁，
+        
+        // 堆栈中，著名的 #1    0x000000010acfe65c in _dispatch_sync_f_slow ()
+
     });
     NSLog(@"5");
     
