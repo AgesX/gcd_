@@ -78,9 +78,15 @@
     */
     
     
+    /*
+    // 4
     [self jiang_two_testDemo1];
     
+    */
     
+    
+    
+    [self jiang_three_testDemo1];
     
     
     // dispatch_async
@@ -215,12 +221,22 @@
         NSLog(@"2");
         
         
+        // outer 匿名函数块
+        
         // 死锁，互相等待
         dispatch_sync(queue, ^{
             
             //  Thread 4: EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0)
             
             //  死锁，崩溃
+            
+            
+            //
+            
+            //
+            
+            // inner 匿名函数块，
+            // 等待的是， outer 匿名函数块
             
             NSLog(@"3");
         });
@@ -247,6 +263,58 @@
 
 
 
+- (void)jiang_three_testDemo1{
+    
+    dispatch_queue_t queue = dispatch_queue_create("cooci", NULL);
+    //  此时，为串行队列
+    //  NULL,  即 DISPATCH_QUEUE_SERIAL
+    
+    
+    
+    
+    
+    
+    NSLog(@"1");
+    dispatch_async(queue, ^{
+        NSLog(@"2");
+        
+        
+        // outer 匿名函数块
+        
+        // 死锁，互相等待
+        dispatch_sync(queue, ^{
+            
+            //  Thread 4: EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0)
+            
+            //  死锁，崩溃
+            
+            
+            //
+            
+            //
+            
+            // inner 匿名函数块，任务
+            // 等待的是， outer 匿名函数块，任务
+            
+            NSLog(@"3");
+        }); // 下面没代码，依旧死锁， dead lock
+
+        
+        
+        // 死锁，
+        
+        // 堆栈中，著名的 #1    0x000000010acfe65c in _dispatch_sync_f_slow ()
+
+    });
+    NSLog(@"5");
+    
+    
+    
+    // 152 挂
+    
+    
+
+}
 
 
 

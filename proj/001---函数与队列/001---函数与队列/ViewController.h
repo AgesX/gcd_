@@ -25,5 +25,7 @@
 
 - (void)jiang_two_testDemo1;
 
+- (void)jiang_three_testDemo1;
+
 @end
 
