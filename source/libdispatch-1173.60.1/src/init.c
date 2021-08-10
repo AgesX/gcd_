@@ -351,6 +351,28 @@ static struct dispatch_pthread_root_queue_context_s
 
 // 6618342 Contact the team that owns the Instrument DTrace probe before
 //         renaming this symbol
+
+
+
+
+
+
+
+
+
+
+
+
+// 系统提供的，默认并发队列
+
+
+// 服务质量的区别， dq_serialnum
+
+
+
+
+
+
 struct dispatch_queue_global_s _dispatch_root_queues[] = {
 #define _DISPATCH_ROOT_QUEUE_IDX(n, flags) \
 		((flags & DISPATCH_PRIORITY_FLAG_OVERCOMMIT) ? \
@@ -417,6 +439,16 @@ struct dispatch_queue_global_s _dispatch_root_queues[] = {
 		.dq_serialnum = 15,
 	),
 };
+
+
+
+
+
+
+
+
+
+
 
 unsigned long volatile _dispatch_queue_serial_numbers =
 		DISPATCH_QUEUE_SERIAL_NUMBER_INIT;
