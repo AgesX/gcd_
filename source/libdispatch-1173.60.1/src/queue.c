@@ -7694,6 +7694,21 @@ _dispatch_root_queues_init(void)
 			_dispatch_root_queues_init_once);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 DISPATCH_EXPORT DISPATCH_NOTHROW
 void
 libdispatch_init(void)
@@ -7773,6 +7788,30 @@ libdispatch_init(void)
 	_voucher_init();
 	_dispatch_introspection_init();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #if DISPATCH_USE_THREAD_LOCAL_STORAGE
 #if defined(__unix__) || (defined(__APPLE__) && defined(__MACH__))

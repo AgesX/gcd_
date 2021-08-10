@@ -595,10 +595,38 @@ struct dispatch_queue_s _dispatch_main_q;
  *
  * @see dispatch_queue_main_t
  *
+ *
+ *
+ 
+ 
+ 
+ 
+ 关键信息
+ 
+ 
+ 
+ *
+ *
  * @result
  * Returns the main queue. This queue is created automatically on behalf of
  * the main thread before main() is called.
+ *
+ *
+
+ 
+ 主线程队列，在 main 函数之前，创建
+ 
+ 
+ 
+ 
+ 
+ 
  */
+
+
+
+
+
 DISPATCH_INLINE DISPATCH_ALWAYS_INLINE DISPATCH_CONST DISPATCH_NOTHROW
 dispatch_queue_main_t
 dispatch_get_main_queue(void)
