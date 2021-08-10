@@ -2685,6 +2685,23 @@ _dispatch_queue_priority_inherit_from_target(dispatch_lane_class_t dq,
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 进入了，内部创建，线程队列的函数
+
+
 DISPATCH_NOINLINE
 static dispatch_queue_t
 _dispatch_lane_create_with_target(const char *label, dispatch_queue_attr_t dqa,
@@ -2809,6 +2826,19 @@ _dispatch_lane_create_with_target(const char *label, dispatch_queue_attr_t dqa,
 	return _dispatch_trace_queue_create(dq)._dq;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 dispatch_queue_t
 dispatch_queue_create_with_target(const char *label, dispatch_queue_attr_t dqa,
 		dispatch_queue_t tq)
@@ -2816,12 +2846,52 @@ dispatch_queue_create_with_target(const char *label, dispatch_queue_attr_t dqa,
 	return _dispatch_lane_create_with_target(label, dqa, tq, false);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//	这样索检， dispatch_queue_create(const
+
+
 dispatch_queue_t
 dispatch_queue_create(const char *label, dispatch_queue_attr_t attr)
 {
 	return _dispatch_lane_create_with_target(label, attr,
 			DISPATCH_TARGET_QUEUE_DEFAULT, true);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 dispatch_queue_t
 dispatch_queue_create_with_accounting_override_voucher(const char *label,
