@@ -31,14 +31,58 @@
 }
 
 
+- (void) testTwo{
+    
+    NSArray * one = @[@"123"];
+    
+    NSArray * two = [one mutableCopy];
+    
+    NSLog(@"\n  one  %p, \n  two  %p", one, two);
+
+    
+}
+
+
+
+
+
+
+- (void) testThree{
+    
+    NSMutableArray * one = [NSMutableArray arrayWithArray: @[@"123"]];
+    
+    NSMutableArray * two = [one mutableCopy];
+    
+    NSLog(@"\n  one  %p, \n  two  %p", one, two);
+
+    
+}
+
+
+
+
+- (void) testFour{
+    
+    NSMutableArray * one = [NSMutableArray arrayWithArray: @[@"123"]];
+    
+    NSArray * two = [one copy];
+    
+    NSLog(@"\n  one  %p, \n  two  %p", one, two);
+
+    
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     
-    [self testOne];
-    
+   // [self testOne];
+   // [self testTwo];
+    [self testThree];
+ //   [self testFour];
 }
 
 
