@@ -516,11 +516,22 @@ _dispatch_queue_attr_to_info(dispatch_queue_attr_t dqa)
 
 	if (!dqa) return dqai;
 
+	
+	
+	
 #if DISPATCH_VARIANT_STATIC
-	if (dqa == &_dispatch_queue_attr_concurrent) { // null 默认
+	if (dqa == &_dispatch_queue_attr_concurrent) {
+		// null 默认
+		
 		dqai.dqai_concurrent = true;
 		return dqai;
 	}
+	
+	
+	//	dqa 设置为 null， 则默认为串行队列
+	
+	
+	
 #endif
 
 	if (dqa < _dispatch_queue_attrs ||

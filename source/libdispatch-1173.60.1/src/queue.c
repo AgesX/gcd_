@@ -2769,6 +2769,16 @@ _dispatch_lane_create_with_target(const char *label, dispatch_queue_attr_t dqa,
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//
 	// Step 2: Initialize the queue
 	//
@@ -2782,12 +2792,38 @@ _dispatch_lane_create_with_target(const char *label, dispatch_queue_attr_t dqa,
 
 	const void *vtable;
 	dispatch_queue_flags_t dqf = legacy ? DQF_MUTABLE : 0;
+	
+	
+	
+	
+	
 	if (dqai.dqai_concurrent) {
-		// OS_dispatch_queue_concurrent
+		
+		
+		//	OS_dispatch_##name
+		
+		
+		
+		//  OS_dispatch_queue_concurrent
+		
+		
+		
 		vtable = DISPATCH_VTABLE(queue_concurrent);
 	} else {
+		
+		
+		
+		
 		vtable = DISPATCH_VTABLE(queue_serial);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	switch (dqai.dqai_autorelease_frequency) {
 	case DISPATCH_AUTORELEASE_FREQUENCY_NEVER:
 		dqf |= DQF_AUTORELEASE_NEVER;
@@ -2804,12 +2840,53 @@ _dispatch_lane_create_with_target(const char *label, dispatch_queue_attr_t dqa,
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 这里说明了，队列也是一个对象
+	
+	
+	
+	
+	// 线程队列的创建代码
+	
 	dispatch_lane_t dq = _dispatch_object_alloc(vtable,
-			sizeof(struct dispatch_lane_s)); // alloc
+			sizeof(struct dispatch_lane_s)); // 这一句，相当于 alloc
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//   看这个标识， dqai.dqai_concurrent
+	
+	//   设置线程数目
+	
+	
 	_dispatch_queue_init(dq, dqf, dqai.dqai_concurrent ?
 			DISPATCH_QUEUE_WIDTH_MAX : 1, DISPATCH_QUEUE_ROLE_INNER |
-			(dqai.dqai_inactive ? DISPATCH_QUEUE_INACTIVE : 0)); // init
+			(dqai.dqai_inactive ? DISPATCH_QUEUE_INACTIVE : 0));
+	// 这一句，相当于 init
 
+	
+	
+	
+	
+	
 	dq->dq_label = label;
 	dq->dq_priority = _dispatch_priority_make((dispatch_qos_t)dqai.dqai_qos,
 			dqai.dqai_relpri);
