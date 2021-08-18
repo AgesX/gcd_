@@ -883,7 +883,33 @@ dispatch_async_enforce_qos_class_f(dispatch_queue_t dq, void *ctxt,
 	_dispatch_async_f(dq, ctxt, func, DISPATCH_BLOCK_ENFORCE_QOS_CLASS);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #ifdef __BLOCKS__
+
+
+
+
+//	dispatch_block_t work, 这个是， 任务
+
+
+// 传入的 block， 在这个函数 dispatch_async 的内部，执行了
+
 void
 dispatch_async(dispatch_queue_t dq, dispatch_block_t work)
 {
@@ -891,12 +917,49 @@ dispatch_async(dispatch_queue_t dq, dispatch_block_t work)
 	uintptr_t dc_flags = DC_FLAG_CONSUME;
 	dispatch_qos_t qos;
 
-	// 任务包装器 - 接受 - 保存 - 函数式
-	// 保存 block 
+	
+	
+	
+	//
+	
+	//
+	
+	//	_dispatch_continuation_init，		任务包装器
+	
+	
+	
+	
+	// 任务包装器 - 接受 block - 保存 block
+	//	- 函数式编程思想
+	
+	
+	
+	
+	
+	// 保存 block ， 到 dc 的成员变量里面
+	
+	
 	qos = _dispatch_continuation_init(dc, dq, work, 0, dc_flags);
 	_dispatch_continuation_async(dq, dc, qos, dc->dc_flags);
 }
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark -
 #pragma mark _dispatch_sync_invoke / _dispatch_sync_complete

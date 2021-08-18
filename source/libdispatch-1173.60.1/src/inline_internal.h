@@ -2613,6 +2613,24 @@ _dispatch_continuation_priority_set(dispatch_continuation_t dc,
 	return qos;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 DISPATCH_ALWAYS_INLINE
 static inline dispatch_qos_t
 _dispatch_continuation_init_f(dispatch_continuation_t dc,
@@ -2620,17 +2638,60 @@ _dispatch_continuation_init_f(dispatch_continuation_t dc,
 		dispatch_block_flags_t flags, uintptr_t dc_flags)
 {
 	pthread_priority_t pp = 0;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	dc->dc_flags = dc_flags | DC_FLAG_ALLOCATED;
+	
+	
+	//			新一轮的赋值
 	dc->dc_func = f;
 	dc->dc_ctxt = ctxt;
 	// in this context DISPATCH_BLOCK_HAS_PRIORITY means that the priority
 	// should not be propagated, only taken from the handler if it has one
 	if (!(flags & DISPATCH_BLOCK_HAS_PRIORITY)) {
+		
+		
+		
 		pp = _dispatch_priority_propagate();
 	}
 	_dispatch_continuation_voucher_set(dc, flags);
 	return _dispatch_continuation_priority_set(dc, dqu, pp, flags);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DISPATCH_ALWAYS_INLINE
 static inline dispatch_qos_t
@@ -2638,22 +2699,72 @@ _dispatch_continuation_init(dispatch_continuation_t dc,
 		dispatch_queue_class_t dqu, dispatch_block_t work,
 		dispatch_block_flags_t flags, uintptr_t dc_flags)
 {
+	
+	
+	
+	
+	// 代码块的拷贝
+	
 	void *ctxt = _dispatch_Block_copy(work);
 
 	dc_flags |= DC_FLAG_BLOCK | DC_FLAG_ALLOCATED;
 	if (unlikely(_dispatch_block_has_private_data(work))) {
 		dc->dc_flags = dc_flags;
+		
+		
+		// block ， 		拷贝一下， 	就赋值
 		dc->dc_ctxt = ctxt;
+		
 		// will initialize all fields but requires dc_flags & dc_ctxt to be set
 		return _dispatch_continuation_init_slow(dc, dqu, flags);
 	}
 
+	
 	dispatch_function_t func = _dispatch_Block_invoke(work);
 	if (dc_flags & DC_FLAG_CONSUME) {
+		
+		
+		
+		//  代表，这个函数，进行析构，和释放
+		
+		
 		func = _dispatch_call_block_and_release;
 	}
 	return _dispatch_continuation_init_f(dc, dqu, ctxt, func, flags, dc_flags);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DISPATCH_ALWAYS_INLINE
 static inline void
