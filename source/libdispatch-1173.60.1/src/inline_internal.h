@@ -2486,13 +2486,28 @@ _dispatch_continuation_with_group_invoke(dispatch_continuation_t dc)
 	}
 }
 
+
+
+
+
+
+
+
+//  执行 block
+
+
+
 DISPATCH_ALWAYS_INLINE
 static inline void
 _dispatch_continuation_invoke_inline(dispatch_object_t dou,
 		dispatch_invoke_flags_t flags, dispatch_queue_class_t dqu)
 {
 	dispatch_continuation_t dc = dou._dc, dc1;
+	
+	
 	dispatch_invoke_with_autoreleasepool(flags, {
+		
+		
 		uintptr_t dc_flags = dc->dc_flags;
 		// Add the item back to the cache before calling the function. This
 		// allows the 'hot' continuation to be used for a quick callback.
@@ -2501,20 +2516,42 @@ _dispatch_continuation_invoke_inline(dispatch_object_t dou,
 		// Therefore, the object has not been reused yet.
 		// This generates better assembly.
 		_dispatch_continuation_voucher_adopt(dc, dc_flags);
+		
+		
+		
 		if (!(dc_flags & DC_FLAG_NO_INTROSPECTION)) {
 			_dispatch_trace_item_pop(dqu, dou);
 		}
+		
+		
+		
 		if (dc_flags & DC_FLAG_CONSUME) {
 			dc1 = _dispatch_continuation_free_cacheonly(dc);
 		} else {
 			dc1 = NULL;
 		}
+		
+		
+		
+		
 		if (unlikely(dc_flags & DC_FLAG_GROUP_ASYNC)) {
 			_dispatch_continuation_with_group_invoke(dc);
 		} else {
+			/*
+			 void
+			_dispatch_client_callout(void *ctxt, dispatch_function_t f)
+			*/
+			
+			
+			
+			
+			// 执行掉 block
 			_dispatch_client_callout(dc->dc_ctxt, dc->dc_func);
 			_dispatch_trace_item_complete(dc);
 		}
+		
+		
+		
 		if (unlikely(dc1)) {
 			_dispatch_continuation_free_to_cache_limit(dc1);
 		}
@@ -2522,23 +2559,69 @@ _dispatch_continuation_invoke_inline(dispatch_object_t dou,
 	_dispatch_perfmon_workitem_inc();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 DISPATCH_ALWAYS_INLINE_NDEBUG
 static inline void
 _dispatch_continuation_pop_inline(dispatch_object_t dou,
 		dispatch_invoke_context_t dic, dispatch_invoke_flags_t flags,
 		dispatch_queue_class_t dqu)
 {
+	
+	
+	
 	dispatch_pthread_root_queue_observer_hooks_t observer_hooks =
 			_dispatch_get_pthread_root_queue_observer_hooks();
 	if (observer_hooks) observer_hooks->queue_will_execute(dqu._dq);
 	flags &= _DISPATCH_INVOKE_PROPAGATE_MASK;
 	if (_dispatch_object_has_vtable(dou)) {
+		
+		// 异步任务的 block ,
+		
+		
+		// 在这里执行
+		
+		
+		
+		
 		dx_invoke(dou._dq, dic, flags);
 	} else {
 		_dispatch_continuation_invoke_inline(dou, flags, dqu);
+		
+		//	_dispatch_continuation_invoke_inline(dispatch_object_t
+		
+		
+		
 	}
 	if (observer_hooks) observer_hooks->queue_did_execute(dqu._dq);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // used to forward the do_invoke of a continuation with a vtable to its real
 // implementation.
