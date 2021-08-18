@@ -35,14 +35,14 @@
     
     
     // OS_dispatch_queue_serial
-    dispatch_queue_t serial = dispatch_queue_create("cooci", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t serial = dispatch_queue_create("cooci  X", DISPATCH_QUEUE_SERIAL);
     
     
     // OS_dispatch_queue_concurrent
     // OS_dispatch_queue_concurrent
     
     
-    dispatch_queue_t conque = dispatch_queue_create("cooci", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t conque = dispatch_queue_create("haha   cooci", DISPATCH_QUEUE_CONCURRENT);
     // DISPATCH_QUEUE_SERIAL max && 1
     // queue 对象 alloc init class
     
@@ -63,8 +63,11 @@
     //  <OS_dispatch_queue_global: com.apple.root.default-qos>
     dispatch_queue_t globQueue = dispatch_get_global_queue(0, 0);
     
+
+    NSLog(@"\n\n\n\n\n%@  \n\n%@     \n\n%@    \n\n%@\n\n\n\n\n\n___", object_getClass(serial)  ,   object_getClass(conque) ,  object_getClass(mainQueue)   ,   object_getClass(globQueue));
     
-    NSLog(@"%@-%@  /n  \\   /n  -%@-%@",serial,conque,mainQueue,globQueue);
+    
+    NSLog(@"\n\n\n\n\n%@  \n\n%@     \n\n%@    \n\n%@\n\n\n\n\n\n___",serial,conque,mainQueue,globQueue);
     
     
     
