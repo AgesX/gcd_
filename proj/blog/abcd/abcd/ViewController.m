@@ -44,12 +44,6 @@
 }
 
 
-
-
-
-/**
- * 栅栏方法 dispatch_barrier_async
- */
 - (void)barrier {
     dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
     
@@ -63,13 +57,53 @@
         [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
         NSLog(@"\n\n\n2---%@",[NSThread currentThread]);      // 打印当前线程
     });
-    
+    NSLog(@"12");
     dispatch_barrier_async(queue, ^{
         // 追加任务 barrier
         [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
         NSLog(@"\n\n\nbarrier---%@",[NSThread currentThread]);// 打印当前线程
     });
+    NSLog(@"34");
+    dispatch_async(queue, ^{
+        // 追加任务 3
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"\n\n\n3---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    dispatch_async(queue, ^{
+        // 追加任务 4
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"\n\n\n4---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+}
+
+
+
+
+
+
+/**
+ * 栅栏方法 dispatch_barrier_async
+ */
+- (void)barrier_sync {
+    dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
     
+    dispatch_async(queue, ^{
+        // 追加任务 1
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"\n\n\n1---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    dispatch_async(queue, ^{
+        // 追加任务 2
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"\n\n\n2---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    NSLog(@"12");
+    dispatch_barrier_sync(queue, ^{
+        // 追加任务 barrier
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"\n\n\nbarrier---%@",[NSThread currentThread]);// 打印当前线程
+    });
+    NSLog(@"34");
     dispatch_async(queue, ^{
         // 追加任务 3
         [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
@@ -95,7 +129,8 @@
     // [self groupWait];
     
     
-    [self barrier];
+  //  [self barrier];
+    [self barrier_sync];
 }
 
 
